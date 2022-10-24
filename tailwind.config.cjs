@@ -23,6 +23,13 @@ module.exports = {
       fontFamily: {
         ubuntu: ["Ubuntu", "sans-serif"],
       },
+      width: {
+        "2px": "2px",
+        "9/10": "90%",
+      },
+      screens: {
+        "semi-lg": "900px",
+      },
     },
   },
   plugins: [],

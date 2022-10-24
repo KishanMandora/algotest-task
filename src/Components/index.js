@@ -1,5 +1,17 @@
 export { Navbar } from "./Navbar/Navbar";
 export { Sidebar } from "./Sidebar/Sidebar";
+export { LegBuilder } from "./LegBuilder/LegBuilder";
+export { LegList } from "./LegList/LegList";
+export { LegContainer } from "./LegContainer/LegContainer";
+export { Expiry } from "./Legs/Expiry";
+export { OptionsType } from "./Legs/OptionsType";
+export { Position } from "./Legs/Position";
+export { StrikeCriteria } from "./Legs/StrikeCriteria";
+export { TotalLots } from "./Legs/TotalLots";
+export { Premium } from "./Legs/StrikeParameter/Premium";
+export { PremiumRange } from "./Legs/StrikeParameter/PremiumRange";
+export { StraddleWidth } from "./Legs/StrikeParameter/StraddleWidth";
+export { StrikeType } from "./Legs/StrikeParameter/StrikeType";
 export { IconSvg } from "./SVGs/IconSvg";
 export { TwitterSvg } from "./SVGs/TwitterSvg";
 export { YoutubeSvg } from "./SVGs/YoutubeSvg";

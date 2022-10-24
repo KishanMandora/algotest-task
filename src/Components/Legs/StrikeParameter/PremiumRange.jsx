@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {
   useLegsList,
   onStrikeParameterChange,
@@ -13,6 +12,18 @@ function PremiumRange() {
 
   useStrikeParameter(dispatch, { Lower, Upper });
 
+  const handlePremiumLow = (e) =>
+    onStrikeParameterChange(dispatch, {
+      Lower: parseInt(e.target.value),
+      Upper,
+    });
+
+  const handlePremiumUp = (e) =>
+    onStrikeParameterChange(dispatch, {
+      Lower,
+      Upper: parseInt(e.target.value),
+    });
+
   return (
     <div className="flex gap-2">
       <div className="flex flex-col gap-2">
@@ -24,9 +35,7 @@ function PremiumRange() {
           className="w-24 rounded-full px-2 py-1 font-normal"
           id="lower"
           value={Lower}
-          onChange={(e) =>
-            onStrikeParameterChange(dispatch, { Lower: e.target.value, Upper })
-          }
+          onChange={(e) => handlePremiumLow(e)}
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -38,9 +47,7 @@ function PremiumRange() {
           className="w-24 rounded-full px-2 py-1 font-normal"
           id="upper"
           value={Upper}
-          onChange={(e) =>
-            onStrikeParameterChange(dispatch, { Lower, Upper: e.target.value })
-          }
+          onChange={(e) => handlePremiumUp(e)}
         />
       </div>
     </div>

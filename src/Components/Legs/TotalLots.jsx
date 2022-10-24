@@ -6,6 +6,8 @@ function TotalLots() {
     state: { Lots },
   } = useLegsList();
 
+  const handleLots = (e) => onLotChange(dispatch, parseInt(e.target.value));
+
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor="lots" className="text-center">
@@ -16,7 +18,7 @@ function TotalLots() {
         className="w-24 rounded-full px-2 py-1 font-normal"
         id="lots"
         value={Lots}
-        onChange={(e) => onLotChange(dispatch, e.target.value)}
+        onChange={(e) => handleLots(e)}
       />
     </div>
   );

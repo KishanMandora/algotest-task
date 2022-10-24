@@ -3,17 +3,19 @@ import { CALL, SELL, STRIKE_TYPE, WEEKLY } from "../constant";
 
 const LegsListContext = createContext();
 
+const initialState = {
+  Lots: 0,
+  PositionType: SELL,
+  OptionType: CALL,
+  ExpiryKind: WEEKLY,
+  EntryType: STRIKE_TYPE,
+  StrikeParameter: "ATM",
+};
+
 function LegsListProvider({ children }) {
   const [state, dispatch] = useReducer(
     (state, action) => ({ ...state, ...action }),
-    {
-      Lots: 0,
-      PositionType: SELL,
-      OptionType: CALL,
-      ExpiryKind: WEEKLY,
-      EntryType: STRIKE_TYPE,
-      StrikeParameter: "ATM",
-    }
+    initialState
   );
   return (
     <LegsListContext.Provider value={{ state, dispatch }}>
@@ -33,6 +35,7 @@ const onExpiryKindChange = (dispatch, value) => dispatch({ ExpiryKind: value });
 const onEntryTypeChange = (dispatch, value) => dispatch({ EntryType: value });
 const onStrikeParameterChange = (dispatch, value) =>
   dispatch({ StrikeParameter: value });
+const resetLegState = (dispatch) => dispatch(initialState);
 
 export {
   useLegsList,
@@ -43,4 +46,5 @@ export {
   onExpiryKindChange,
   onEntryTypeChange,
   onStrikeParameterChange,
+  resetLegState,
 };

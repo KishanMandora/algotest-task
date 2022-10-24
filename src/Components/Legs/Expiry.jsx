@@ -6,6 +6,8 @@ function Expiry() {
     state: { ExpiryKind },
   } = useLegsList();
 
+  const handleExpiry = (e) => onExpiryKindChange(dispatch, e.target.value);
+
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor="expiry" className="text-center">
@@ -15,7 +17,7 @@ function Expiry() {
         className="rounded-full bg-white px-2 py-1 font-normal"
         id="expiry"
         value={ExpiryKind}
-        onChange={(e) => onExpiryKindChange(dispatch, e.target.value)}
+        onChange={(e) => handleExpiry(e)}
       >
         {optionsData.map(({ optionTitle, value }) => (
           <option key={optionTitle} value={value}>

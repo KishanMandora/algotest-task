@@ -1,7 +1,15 @@
 import { LegBuilder } from "..";
-import { LegsListProvider } from "../../Context/LegsListContext";
+import { resetLegState, useLegsList } from "../../Context/LegsListContext";
 
-function LegList() {
+function LegList({ setAllLegs, setShowLegMenu }) {
+  const { state, dispatch } = useLegsList();
+
+  const hideLegMenu = () => setShowLegMenu(false);
+  const handleAddLegs = () => {
+    setAllLegs((prev) => [...prev, state]);
+    resetLegState(dispatch);
+  };
+
   return (
     <div className="flex flex-col items-center p-4 text-xs">
       <div className="flex items-center gap-2">
@@ -15,14 +23,20 @@ function LegList() {
           </div>
         </div>
       </div>
-      <LegsListProvider>
-        <LegBuilder />
-      </LegsListProvider>
+
+      <LegBuilder />
+
       <div className="flex gap-2">
-        <button className="rounded-full bg-primary-color py-1 px-8 font-normal text-white-color">
+        <button
+          className="rounded-full bg-primary-color py-1 px-8 font-normal text-white-color"
+          onClick={handleAddLegs}
+        >
           Add Leg
         </button>
-        <button className="rounded-full bg-white-color py-1  px-8 font-normal text-primary-color">
+        <button
+          className="rounded-full bg-white-color py-1  px-8 font-normal text-primary-color"
+          onClick={hideLegMenu}
+        >
           Cancel
         </button>
       </div>

@@ -1,7 +1,7 @@
 function Sidebar() {
   return (
     <div className="hidden bg-black-color semi-lg:block">
-      <div className="sticky top-12 h-96 text-sm text-white-color">
+      <div className="sticky top-12 text-sm text-white-color">
         <div className="py-4 px-5">
           <a href="https://algotest.in/dashboard">Dashboard</a>
         </div>

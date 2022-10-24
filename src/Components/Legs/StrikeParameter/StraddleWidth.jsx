@@ -13,6 +13,18 @@ function StraddleWidth() {
 
   useStrikeParameter(dispatch, { Adjustment, Multiplier });
 
+  const handleStraddleAdjustment = (e) =>
+    onStrikeParameterChange(dispatch, {
+      Adjustment: e.target.value,
+      Multiplier,
+    });
+
+  const handleStraddleMultiplier = (e) => (e) =>
+    onStrikeParameterChange(dispatch, {
+      Adjustment,
+      Multiplier: parseInt(e.target.value),
+    });
+
   return (
     <div className="flex items-center gap-1 font-normal">
       <span className="text-sm">
@@ -21,12 +33,7 @@ function StraddleWidth() {
       <select
         className="rounded-full bg-white px-2 py-1 font-normal"
         value={Adjustment}
-        onChange={(e) =>
-          onStrikeParameterChange(dispatch, {
-            Adjustment: e.target.value,
-            Multiplier,
-          })
-        }
+        onChange={(e) => handleStraddleAdjustment(e)}
       >
         {optionsData.map(({ optionTitle, value }) => (
           <option key={optionTitle} value={value}>
@@ -39,12 +46,7 @@ function StraddleWidth() {
         type="number"
         className="w-16 rounded-full px-2 py-1 font-normal"
         value={Multiplier}
-        onChange={(e) =>
-          onStrikeParameterChange(dispatch, {
-            Adjustment,
-            Multiplier: e.target.value,
-          })
-        }
+        onChange={(e) => handleStraddleMultiplier(e)}
       />
       <span className="text-sm">
         <span className="font-bold"> x </span>ATM Straddle Price

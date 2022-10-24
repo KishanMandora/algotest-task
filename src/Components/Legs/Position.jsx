@@ -6,6 +6,8 @@ function Position() {
     state: { PositionType },
   } = useLegsList();
 
+  const handlePosition = (e) => onPositionChange(dispatch, e.target.value);
+
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor="position" className="text-center">
@@ -15,7 +17,7 @@ function Position() {
         className="rounded-full bg-white px-2 py-1 font-normal"
         id="position"
         value={PositionType}
-        onChange={(e) => onPositionChange(dispatch, e.target.value)}
+        onChange={(e) => handlePosition(e)}
       >
         {optionsData.map(({ optionTitle, value }) => (
           <option key={optionTitle} value={value}>

@@ -7,6 +7,8 @@ function OptionsType() {
     state: { OptionType },
   } = useLegsList();
 
+  const handleOptionType = (e) => onOptionTypeChange(dispatch, e.target.value);
+
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor="optionType" className="text-center">
@@ -16,7 +18,7 @@ function OptionsType() {
         className="rounded-full bg-white px-2 py-1 font-normal"
         id="optionType"
         value={OptionType}
-        onChange={(e) => onOptionTypeChange(dispatch, e.target.value)}
+        onChange={(e) => handleOptionType(e)}
       >
         {optionsData.map(({ optionTitle, value }) => (
           <option key={optionTitle} value={value}>

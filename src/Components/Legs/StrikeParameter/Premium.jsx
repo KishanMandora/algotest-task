@@ -10,6 +10,9 @@ function Premium({ value = 50 }) {
 
   useStrikeParameter(dispatch, value);
 
+  const handlePremium = (e) =>
+    onStrikeParameterChange(dispatch, parseInt(e.target.value));
+
   console.log(state, "state");
   console.log(StrikeParameter, "paaa");
   return (
@@ -22,8 +25,8 @@ function Premium({ value = 50 }) {
         type="number"
         className="w-24 rounded-full px-2 py-1 font-normal"
         id="premium"
-        value={value}
-        onChange={(e) => onStrikeParameterChange(dispatch, e.target.value)}
+        value={StrikeParameter}
+        onChange={(e) => handlePremium(e)}
       />
     </div>
   );

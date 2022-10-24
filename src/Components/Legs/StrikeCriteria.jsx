@@ -7,6 +7,9 @@ function StrikeCriteria() {
     state: { EntryType },
   } = useLegsList();
 
+  const handleStrikeCriteria = (e) =>
+    onEntryTypeChange(dispatch, e.target.value);
+
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor="strikeCriteria" className="text-center">
@@ -16,7 +19,7 @@ function StrikeCriteria() {
         className="rounded-full bg-white px-2 py-1 font-normal"
         id="strikeCriteria"
         value={EntryType}
-        onChange={(e) => onEntryTypeChange(dispatch, e.target.value)}
+        onChange={(e) => handleStrikeCriteria(e)}
       >
         {optionsData.map(({ optionTitle, value }) => (
           <option key={optionTitle} value={value}>

@@ -12,6 +12,9 @@ function StrikeType({ value = ATM }) {
 
   useStrikeParameter(dispatch, value);
 
+  const handleStrikeType = (e) =>
+    onStrikeParameterChange(dispatch, e.target.value);
+
   return (
     <div className="flex flex-col gap-2">
       <label htmlFor="strikeType" className="text-center">
@@ -22,7 +25,7 @@ function StrikeType({ value = ATM }) {
         className="rounded-full bg-white px-2 py-1 font-normal"
         id="strikeType"
         value={StrikeParameter}
-        onChange={(e) => onStrikeParameterChange(dispatch, e.target.value)}
+        onChange={(e) => handleStrikeType(e)}
       >
         {optionsData.map(({ optionTitle, value }) => (
           <option key={optionTitle} value={value}>

@@ -7,6 +7,7 @@ module.exports = {
         "primary-color": "#375a9e",
         "white-color": "#fff",
         "black-color": "#3f3f3f",
+        "gray-color": "#757575",
         "gray-1": "#ced4da",
         "gray-2": "#e6f2fd",
         "gray-5": "#efefef",
@@ -25,6 +26,10 @@ module.exports = {
       },
       width: {
         "2px": "2px",
+        "9/10": "90%",
+      },
+      height: {
+        "1/10": "10%",
         "9/10": "90%",
       },
       screens: {

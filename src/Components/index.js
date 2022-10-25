@@ -8,6 +8,7 @@ export { OptionsType } from "./Legs/OptionsType";
 export { Position } from "./Legs/Position";
 export { StrikeCriteria } from "./Legs/StrikeCriteria";
 export { TotalLots } from "./Legs/TotalLots";
+export { Parameters } from "./Legs/StrikeParameter/Parameters";
 export { Premium } from "./Legs/StrikeParameter/Premium";
 export { PremiumRange } from "./Legs/StrikeParameter/PremiumRange";
 export { StraddleWidth } from "./Legs/StrikeParameter/StraddleWidth";

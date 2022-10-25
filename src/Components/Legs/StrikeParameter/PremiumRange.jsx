@@ -1,27 +1,31 @@
-import {
-  useLegsList,
-  onStrikeParameterChange,
-} from "../../../Context/LegsListContext";
-import { useStrikeParameter } from "../../../Hooks/useStrikeParameter";
+import { useEffect } from "react";
+import { PREMIUM_RANGE } from "../../../constant";
 
-function PremiumRange() {
-  const { dispatch, state } = useLegsList();
-  const {
-    StrikeParameter: { Lower = 50, Upper = 200 },
-  } = state;
+function PremiumRange({
+  strikeParam,
+  handleChange,
+  prevState,
+  entryType,
+  setPrevState,
+}) {
+  const { Lower = 50, Upper = 200 } = strikeParam;
 
-  useStrikeParameter(dispatch, { Lower, Upper });
+  useEffect(() => {
+    if (entryType === PREMIUM_RANGE) {
+      handleChange(prevState);
+    }
+  }, [entryType]);
 
-  const handlePremiumLow = (e) =>
-    onStrikeParameterChange(dispatch, {
-      Lower: parseInt(e.target.value),
+  const handlePremiumLow = (value) =>
+    handleChange({
+      Lower: parseInt(value),
       Upper,
     });
 
-  const handlePremiumUp = (e) =>
-    onStrikeParameterChange(dispatch, {
+  const handlePremiumUp = (value) =>
+    handleChange({
       Lower,
-      Upper: parseInt(e.target.value),
+      Upper: parseInt(value),
     });
 
   return (
@@ -35,7 +39,13 @@ function PremiumRange() {
           className="w-24 rounded-full px-2 py-1 font-normal"
           id="lower"
           value={Lower}
-          onChange={(e) => handlePremiumLow(e)}
+          onChange={(e) => {
+            handlePremiumLow(e.target.value);
+            setPrevState((prev) => ({
+              ...prev,
+              range: { ...prev.range, Lower: e.target.value },
+            }));
+          }}
         />
       </div>
       <div className="flex flex-col gap-2">
@@ -47,7 +57,13 @@ function PremiumRange() {
           className="w-24 rounded-full px-2 py-1 font-normal"
           id="upper"
           value={Upper}
-          onChange={(e) => handlePremiumUp(e)}
+          onChange={(e) => {
+            handlePremiumUp(e.target.value);
+            setPrevState((prev) => ({
+              ...prev,
+              range: { ...prev.range, Upper: e.target.value },
+            }));
+          }}
         />
       </div>
     </div>

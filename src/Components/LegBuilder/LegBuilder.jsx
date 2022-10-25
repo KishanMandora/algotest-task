@@ -4,36 +4,61 @@ import {
   OptionsType,
   Position,
   StrikeCriteria,
-  Premium,
-  PremiumRange,
-  StraddleWidth,
-  StrikeType,
+  Parameters,
 } from "..";
 import {
-  PREMIUM,
-  PREMIUM_RANGE,
-  STRADDLE_WIDTH,
-  STRIKE_TYPE,
+  ENTRY_TYPE,
+  EXPIRY_KIND,
+  LOTS,
+  OPTION_TYPE,
+  POSITION_TYPE,
+  STRIKE_PARAMETER,
 } from "../../constant";
-import { useLegsList } from "../../Context/LegsListContext";
+import {
+  useLegsList,
+  handleUpdateDispatch,
+} from "../../Context/LegsListContext";
 
 function LegBuilder() {
-  const { state } = useLegsList();
+  const { state, dispatch } = useLegsList();
 
-  const { EntryType } = state;
-  console.log(state);
+  const {
+    EntryType,
+    Lots,
+    PositionType,
+    OptionType,
+    ExpiryKind,
+    StrikeParameter,
+  } = state;
+  console.log(state, "state");
 
   return (
     <div className="flex flex-wrap justify-center gap-6 p-4">
-      <TotalLots />
-      <Position />
-      <OptionsType />
-      <Expiry />
-      <StrikeCriteria />
-      {EntryType === STRIKE_TYPE ? <StrikeType /> : null}
-      {EntryType === PREMIUM ? <Premium /> : null}
-      {EntryType === PREMIUM_RANGE ? <PremiumRange /> : null}
-      {EntryType === STRADDLE_WIDTH ? <StraddleWidth /> : null}
+      <TotalLots
+        lots={Lots}
+        handleChange={handleUpdateDispatch(dispatch, LOTS)}
+      />
+      <Position
+        position={PositionType}
+        handleChange={handleUpdateDispatch(dispatch, POSITION_TYPE)}
+      />
+      <OptionsType
+        options={OptionType}
+        handleChange={handleUpdateDispatch(dispatch, OPTION_TYPE)}
+      />
+      <Expiry
+        expiry={ExpiryKind}
+        handleChange={handleUpdateDispatch(dispatch, EXPIRY_KIND)}
+      />
+      <StrikeCriteria
+        entryType={EntryType}
+        handleChange={handleUpdateDispatch(dispatch, ENTRY_TYPE)}
+      />
+      <Parameters
+        entryType={EntryType}
+        strikeParam={StrikeParameter}
+        handleChange={handleUpdateDispatch(dispatch, STRIKE_PARAMETER)}
+      />
     </div>
   );
 }

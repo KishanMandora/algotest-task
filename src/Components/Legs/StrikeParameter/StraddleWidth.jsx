@@ -1,4 +1,5 @@
-import { PLUS } from "../../../constant";
+import { useEffect } from "react";
+import { PLUS, STRADDLE_WIDTH } from "../../../constant";
 import {
   useLegsList,
   onStrikeParameterChange,
@@ -6,24 +7,34 @@ import {
 import { adjustmentOptions as optionsData } from "../../../data";
 import { useStrikeParameter } from "../../../Hooks/useStrikeParameter";
 
-function StraddleWidth() {
-  const { dispatch, state } = useLegsList();
-  const { StrikeParameter } = state;
-  const { Adjustment = PLUS, Multiplier = 0.5 } = StrikeParameter;
+function StraddleWidth({
+  strikeParam,
+  handleChange,
+  entryType,
+  setPrevState,
+  prevState,
+}) {
+  const { Adjustment = PLUS, Multiplier = 0.5 } = strikeParam;
 
-  useStrikeParameter(dispatch, { Adjustment, Multiplier });
+  useEffect(() => {
+    if (entryType === STRADDLE_WIDTH) {
+      handleChange(prevState);
+    }
+  }, [entryType]);
 
-  const handleStraddleAdjustment = (e) =>
-    onStrikeParameterChange(dispatch, {
-      Adjustment: e.target.value,
+  const handleStraddleAdjustment = (value) =>
+    handleChange({
+      Adjustment: value,
       Multiplier,
     });
 
-  const handleStraddleMultiplier = (e) => (e) =>
-    onStrikeParameterChange(dispatch, {
+  const handleStraddleMultiplier = (value) => {
+    console.log(value, "multiply value");
+    handleChange({
       Adjustment,
-      Multiplier: parseInt(e.target.value),
+      Multiplier: parseFloat(value),
     });
+  };
 
   return (
     <div className="flex items-center gap-1 font-normal">
@@ -33,7 +44,13 @@ function StraddleWidth() {
       <select
         className="rounded-full bg-white px-2 py-1 font-normal"
         value={Adjustment}
-        onChange={(e) => handleStraddleAdjustment(e)}
+        onChange={(e) => {
+          handleStraddleAdjustment(e.target.value);
+          setPrevState((prev) => ({
+            ...prev,
+            straddle: { ...prev.straddle, Adjustment: e.target.value },
+          }));
+        }}
       >
         {optionsData.map(({ optionTitle, value }) => (
           <option key={optionTitle} value={value}>
@@ -46,8 +63,16 @@ function StraddleWidth() {
         type="number"
         className="w-16 rounded-full px-2 py-1 font-normal"
         value={Multiplier}
-        onChange={(e) => handleStraddleMultiplier(e)}
+        onChange={(e) => {
+          console.log(e.target.value, "from  con");
+          handleStraddleMultiplier(e.target.value);
+          setPrevState((prev) => ({
+            ...prev,
+            straddle: { ...prev.straddle, Multiplier: e.target.value },
+          }));
+        }}
       />
+
       <span className="text-sm">
         <span className="font-bold"> x </span>ATM Straddle Price
         <span className="font-bold">)]</span>

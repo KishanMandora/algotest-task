@@ -6,7 +6,7 @@ function LegList({ setAllLegs, setShowLegMenu }) {
 
   const hideLegMenu = () => setShowLegMenu(false);
   const handleAddLegs = () => {
-    setAllLegs((prev) => [...prev, state]);
+    setAllLegs((prev) => [...prev, { ...state, id: Math.random() }]);
     resetLegState(dispatch);
   };
 

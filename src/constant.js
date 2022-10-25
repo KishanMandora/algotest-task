@@ -38,6 +38,15 @@ const AdjustmentType = {
   MINUS: "Minus",
 };
 
+const legs = {
+  LOTS: "Lots",
+  POSITION_TYPE: "PositionType",
+  OPTION_TYPE: "OptionType",
+  EXPIRY_KIND: "ExpiryKind",
+  ENTRY_TYPE: "EntryType",
+  STRIKE_PARAMETER: "StrikeParameter",
+};
+
 const { BUY, SELL } = PositionType;
 const { CALL, PUT } = OptionType;
 const { WEEKLY, MONTHLY } = ExpiryKind;
@@ -45,6 +54,14 @@ const { STRIKE_TYPE, PREMIUM, PREMIUM_RANGE, STRADDLE_WIDTH } = EntryType;
 const { ATM, OTM1, OTM2, OTM3, OTM4 } = StrikeType;
 const { LOWER, UPPER } = PremiumRangeType;
 const { PLUS, MINUS } = AdjustmentType;
+const {
+  LOTS,
+  POSITION_TYPE,
+  OPTION_TYPE,
+  EXPIRY_KIND,
+  ENTRY_TYPE,
+  STRIKE_PARAMETER,
+} = legs;
 
 export {
   SELL,
@@ -66,4 +83,10 @@ export {
   UPPER,
   PLUS,
   MINUS,
+  LOTS,
+  POSITION_TYPE,
+  OPTION_TYPE,
+  EXPIRY_KIND,
+  ENTRY_TYPE,
+  STRIKE_PARAMETER,
 };

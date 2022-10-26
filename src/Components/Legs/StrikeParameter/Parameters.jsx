@@ -12,36 +12,27 @@ import {
   STRADDLE_WIDTH,
 } from "../../../constant";
 
-function Parameters({ strikeParam, handleChange, entryType, hideLabel }) {
-  const [parameters, setParameters] = useState({
-    strike: ATM,
-    premium: 50,
-    range: { Lower: 50, Upper: 200 },
-    straddle: { Adjustment: PLUS, Multiplier: 0.5 },
-  });
-
-  const { strike, premium, range, straddle } = parameters;
-  console.log(parameters, "paramts");
-
+function Parameters({
+  strikeParam,
+  handleChange,
+  entryType,
+  hideLabel,
+  primaryStyles,
+}) {
   return (
     <div>
       {entryType === STRIKE_TYPE ? (
         <StrikeType
           strikeParam={strikeParam}
           handleChange={handleChange}
-          setPrevState={setParameters}
-          prevState={strike}
-          entryType={entryType}
           hideLabel={hideLabel}
+          primaryStyles={primaryStyles}
         />
       ) : null}
       {entryType === PREMIUM ? (
         <Premium
           strikeParam={strikeParam}
           handleChange={handleChange}
-          setPrevState={setParameters}
-          prevState={premium}
-          entryType={entryType}
           hideLabel={hideLabel}
         />
       ) : null}
@@ -49,20 +40,11 @@ function Parameters({ strikeParam, handleChange, entryType, hideLabel }) {
         <PremiumRange
           strikeParam={strikeParam}
           handleChange={handleChange}
-          setPrevState={setParameters}
-          prevState={range}
-          entryType={entryType}
           hideLabel={hideLabel}
         />
       ) : null}
       {entryType === STRADDLE_WIDTH ? (
-        <StraddleWidth
-          strikeParam={strikeParam}
-          handleChange={handleChange}
-          setPrevState={setParameters}
-          prevState={straddle}
-          entryType={entryType}
-        />
+        <StraddleWidth strikeParam={strikeParam} handleChange={handleChange} />
       ) : null}
     </div>
   );

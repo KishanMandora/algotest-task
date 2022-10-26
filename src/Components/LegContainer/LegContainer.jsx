@@ -27,7 +27,6 @@ function LegContainer() {
   const isActive = showLegMenu ? "opacity-20" : "";
 
   const toggleShowLeg = () => setShowLegMenu((prev) => !prev);
-  console.log(allLegs);
 
   const handleLegUpdate = (id, legType) => (value) =>
     setAllLegs((prev) =>
@@ -58,10 +57,10 @@ function LegContainer() {
             EntryType,
             StrikeParameter,
           } = leg;
-          console.log(PositionType, "position  from map");
+
           return (
             <div
-              className="relative rounded-md bg-form-background p-4 text-xs"
+              className="relative my-4 rounded-md bg-form-background p-4 text-xs"
               key={id}
             >
               <div className="absolute top-[-12px] right-[-12px] flex flex-col gap-3">
@@ -84,22 +83,19 @@ function LegContainer() {
                 <Position
                   position={PositionType}
                   handleChange={handleLegUpdate(id, POSITION_TYPE)}
-                  bgClr="bg-primary-color"
-                  txtClr="text-white-color"
+                  primaryStyles
                   hideLabel
                 />
                 <OptionsType
                   options={OptionType}
                   handleChange={handleLegUpdate(id, OPTION_TYPE)}
-                  bgClr="bg-primary-color"
-                  txtClr="text-white-color"
+                  primaryStyles
                   hideLabel
                 />
                 <Expiry
                   expiry={ExpiryKind}
                   handleChange={handleLegUpdate(id, EXPIRY_KIND)}
-                  bgClr="bg-primary-color"
-                  txtClr="text-white-color"
+                  primaryStyles
                   hideLabel
                 />
                 <div className="flex items-center gap-2">
@@ -107,8 +103,7 @@ function LegContainer() {
                   <StrikeCriteria
                     entryType={EntryType}
                     handleChange={handleLegUpdate(id, ENTRY_TYPE)}
-                    bgClr="bg-primary-color"
-                    txtClr="text-white-color"
+                    primaryStyles
                     hideLabel
                   />
                 </div>
@@ -117,6 +112,7 @@ function LegContainer() {
                   entryType={EntryType}
                   strikeParam={StrikeParameter}
                   handleChange={handleLegUpdate(id, STRIKE_PARAMETER)}
+                  primaryStyles
                   hideLabel
                 />
               </div>

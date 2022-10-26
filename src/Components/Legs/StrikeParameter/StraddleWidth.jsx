@@ -1,26 +1,12 @@
-import { useEffect } from "react";
 import { PLUS, STRADDLE_WIDTH } from "../../../constant";
-import {
-  useLegsList,
-  onStrikeParameterChange,
-} from "../../../Context/LegsListContext";
-import { adjustmentOptions as optionsData } from "../../../data";
-import { useStrikeParameter } from "../../../Hooks/useStrikeParameter";
 
-function StraddleWidth({
-  strikeParam,
-  handleChange,
-  entryType,
-  setPrevState,
-  prevState,
-}) {
+import { adjustmentOptions } from "../../../data";
+
+import { NumberInput } from "../../LegForms/NumberInput";
+import { SelectInput } from "../../LegForms/SelectInput";
+
+function StraddleWidth({ strikeParam, handleChange }) {
   const { Adjustment = PLUS, Multiplier = 0.5 } = strikeParam;
-
-  useEffect(() => {
-    if (entryType === STRADDLE_WIDTH) {
-      handleChange(prevState);
-    }
-  }, [entryType]);
 
   const handleStraddleAdjustment = (value) =>
     handleChange({
@@ -29,7 +15,6 @@ function StraddleWidth({
     });
 
   const handleStraddleMultiplier = (value) => {
-    console.log(value, "multiply value");
     handleChange({
       Adjustment,
       Multiplier: parseFloat(value),
@@ -41,36 +26,19 @@ function StraddleWidth({
       <span className="text-sm">
         <span className="font-bold"> [ </span> ATM Strike
       </span>
-      <select
-        className="rounded-full bg-white px-2 py-1 font-normal"
+      <SelectInput
         value={Adjustment}
-        onChange={(e) => {
-          handleStraddleAdjustment(e.target.value);
-          setPrevState((prev) => ({
-            ...prev,
-            straddle: { ...prev.straddle, Adjustment: e.target.value },
-          }));
-        }}
-      >
-        {optionsData.map(({ optionTitle, value }) => (
-          <option key={optionTitle} value={value}>
-            {optionTitle}
-          </option>
-        ))}
-      </select>
+        handleChange={handleStraddleAdjustment}
+        optionsData={adjustmentOptions}
+        hideLabel={true}
+      />
+
       <span className="text-sm font-bold">(</span>
-      <input
-        type="number"
-        className="w-16 rounded-full px-2 py-1 font-normal"
+      <NumberInput
         value={Multiplier}
-        onChange={(e) => {
-          console.log(e.target.value, "from  con");
-          handleStraddleMultiplier(e.target.value);
-          setPrevState((prev) => ({
-            ...prev,
-            straddle: { ...prev.straddle, Multiplier: e.target.value },
-          }));
-        }}
+        handleChange={handleStraddleMultiplier}
+        hideLabel={true}
+        minValue={0.5}
       />
 
       <span className="text-sm">

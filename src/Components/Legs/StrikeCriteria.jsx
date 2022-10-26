@@ -1,33 +1,17 @@
-import { strikeCriteriaOptions as optionsData } from "../../data";
+import { strikeCriteriaOptions } from "../../data";
+import { SelectInput } from "../LegForms/SelectInput";
 
-function StrikeCriteria({
-  entryType,
-  handleChange,
-  bgClr = "bg-white-color",
-  txtClr = "text-black-color",
-  hideLabel,
-}) {
+function StrikeCriteria({ entryType, handleChange, primaryStyles, hideLabel }) {
   return (
-    <div className="flex flex-col gap-2">
-      {hideLabel ? null : (
-        <label htmlFor="strikeCriteria" className="text-center">
-          Select Strike Criteria
-        </label>
-      )}
-
-      <select
-        className={`rounded-full px-2 py-1 font-normal ${bgClr} ${txtClr}`}
-        id="strikeCriteria"
-        value={entryType}
-        onChange={(e) => handleChange(e.target.value)}
-      >
-        {optionsData.map(({ optionTitle, value }) => (
-          <option key={optionTitle} value={value}>
-            {optionTitle}
-          </option>
-        ))}
-      </select>
-    </div>
+    <SelectInput
+      labelName="Strike Criteria"
+      id="strikeCriteria"
+      value={entryType}
+      handleChange={handleChange}
+      optionsData={strikeCriteriaOptions}
+      hideLabel={hideLabel}
+      primaryStyles={primaryStyles}
+    />
   );
 }
 

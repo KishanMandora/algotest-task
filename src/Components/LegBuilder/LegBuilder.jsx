@@ -18,6 +18,7 @@ import {
   useLegsList,
   handleUpdateDispatch,
 } from "../../Context/LegsListContext";
+import { SelectInput } from "../LegForms/SelectInput";
 
 function LegBuilder() {
   const { state, dispatch } = useLegsList();
@@ -30,7 +31,6 @@ function LegBuilder() {
     ExpiryKind,
     StrikeParameter,
   } = state;
-  console.log(state, "state");
 
   return (
     <div className="flex flex-wrap justify-center gap-6 p-4">

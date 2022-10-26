@@ -1,33 +1,17 @@
-import { expiryOptions as optionsData } from "../../data";
+import { expiryOptions } from "../../data";
+import { SelectInput } from "../LegForms/SelectInput";
 
-function Expiry({
-  expiry,
-  handleChange,
-  bgClr = "bg-white-color",
-  txtClr = "text-black-color",
-  hideLabel,
-}) {
+function Expiry({ expiry, handleChange, primaryStyles, hideLabel }) {
   return (
-    <div className="flex flex-col gap-2">
-      {hideLabel ? null : (
-        <label htmlFor="expiry" className="text-center">
-          Expiry
-        </label>
-      )}
-
-      <select
-        className={`rounded-full px-2 py-1 font-normal ${bgClr} ${txtClr}`}
-        id="expiry"
-        value={expiry}
-        onChange={(e) => handleChange(e.target.value)}
-      >
-        {optionsData.map(({ optionTitle, value }) => (
-          <option key={optionTitle} value={value}>
-            {optionTitle}
-          </option>
-        ))}
-      </select>
-    </div>
+    <SelectInput
+      labelName="Expiry"
+      id="expiry"
+      value={expiry}
+      handleChange={handleChange}
+      optionsData={expiryOptions}
+      hideLabel={hideLabel}
+      primaryStyles={primaryStyles}
+    />
   );
 }
 

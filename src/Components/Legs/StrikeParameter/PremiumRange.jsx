@@ -1,21 +1,7 @@
-import { useEffect } from "react";
-import { PREMIUM_RANGE } from "../../../constant";
+import { NumberInput } from "../../LegForms/NumberInput";
 
-function PremiumRange({
-  strikeParam,
-  handleChange,
-  prevState,
-  entryType,
-  setPrevState,
-  hideLabel,
-}) {
+function PremiumRange({ strikeParam, handleChange, hideLabel }) {
   const { Lower = 50, Upper = 200 } = strikeParam;
-
-  useEffect(() => {
-    if (entryType === PREMIUM_RANGE) {
-      handleChange(prevState);
-    }
-  }, [entryType]);
 
   const handlePremiumLow = (value) =>
     handleChange({
@@ -31,47 +17,20 @@ function PremiumRange({
 
   return (
     <div className="flex gap-2">
-      <div className="flex flex-col gap-2">
-        {hideLabel ? null : (
-          <label htmlFor="lower" className="text-center">
-            Lower Range
-          </label>
-        )}
-
-        <input
-          type="number"
-          className="w-24 rounded-full px-2 py-1 font-normal"
-          id="lower"
-          value={Lower}
-          onChange={(e) => {
-            handlePremiumLow(e.target.value);
-            setPrevState((prev) => ({
-              ...prev,
-              range: { ...prev.range, Lower: e.target.value },
-            }));
-          }}
-        />
-      </div>
-      <div className="flex flex-col gap-2">
-        {hideLabel ? null : (
-          <label htmlFor="upper" className="text-center">
-            Upper Range
-          </label>
-        )}
-        <input
-          type="number"
-          className="w-24 rounded-full px-2 py-1 font-normal"
-          id="upper"
-          value={Upper}
-          onChange={(e) => {
-            handlePremiumUp(e.target.value);
-            setPrevState((prev) => ({
-              ...prev,
-              range: { ...prev.range, Upper: e.target.value },
-            }));
-          }}
-        />
-      </div>
+      <NumberInput
+        labelName="Lower Range"
+        id="lower"
+        value={Lower}
+        handleChange={handlePremiumLow}
+        hideLabel={hideLabel}
+      />
+      <NumberInput
+        labelName="Upper Range"
+        id="upper"
+        value={Upper}
+        handleChange={handlePremiumUp}
+        hideLabel={hideLabel}
+      />
     </div>
   );
 }

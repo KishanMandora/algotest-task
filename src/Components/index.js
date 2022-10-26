@@ -13,6 +13,8 @@ export { Premium } from "./Legs/StrikeParameter/Premium";
 export { PremiumRange } from "./Legs/StrikeParameter/PremiumRange";
 export { StraddleWidth } from "./Legs/StrikeParameter/StraddleWidth";
 export { StrikeType } from "./Legs/StrikeParameter/StrikeType";
+export { SelectInput } from "./LegForms/SelectInput";
+export { NumberInput } from "./LegForms/NumberInput";
 export { IconSvg } from "./SVGs/IconSvg";
 export { TwitterSvg } from "./SVGs/TwitterSvg";
 export { YoutubeSvg } from "./SVGs/YoutubeSvg";

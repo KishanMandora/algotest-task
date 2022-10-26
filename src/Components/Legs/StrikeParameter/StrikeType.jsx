@@ -1,46 +1,17 @@
-import { useEffect } from "react";
-import { STRIKE_TYPE } from "../../../constant";
+import { SelectInput } from "../../LegForms/SelectInput";
+import { strikeTypeOptions } from "../../../data";
 
-import { strikeTypeOptions as optionsData } from "../../../data";
-
-function StrikeType({
-  strikeParam,
-  handleChange,
-  setPrevState,
-  prevState,
-  entryType,
-  hideLabel,
-}) {
-  useEffect(() => {
-    if (entryType === STRIKE_TYPE) {
-      handleChange(prevState);
-    }
-  }, [entryType]);
-
+function StrikeType({ strikeParam, handleChange, primaryStyles, hideLabel }) {
   return (
-    <div className="flex flex-col gap-2">
-      {hideLabel ? null : (
-        <label htmlFor="strikeType" className="text-center">
-          Strike Type
-        </label>
-      )}
-
-      <select
-        className="rounded-full bg-white px-2 py-1 font-normal"
-        id="strikeType"
-        value={strikeParam}
-        onChange={(e) => {
-          handleChange(e.target.value);
-          setPrevState((prev) => ({ ...prev, strike: e.target.value }));
-        }}
-      >
-        {optionsData.map(({ optionTitle, value }) => (
-          <option key={optionTitle} value={value}>
-            {optionTitle}
-          </option>
-        ))}
-      </select>
-    </div>
+    <SelectInput
+      labelName="Strike Type"
+      id="strike"
+      value={strikeParam}
+      handleChange={handleChange}
+      optionsData={strikeTypeOptions}
+      hideLabel={hideLabel}
+      primaryStyles={primaryStyles}
+    />
   );
 }
 

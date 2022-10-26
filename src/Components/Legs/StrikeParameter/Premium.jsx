@@ -1,39 +1,14 @@
-import { useEffect } from "react";
-import { PREMIUM } from "../../../constant";
+import { NumberInput } from "../../LegForms/NumberInput";
 
-function Premium({
-  strikeParam,
-  handleChange,
-  setPrevState,
-  prevState,
-  entryType,
-  hideLabel,
-}) {
-  useEffect(() => {
-    if (entryType === PREMIUM) {
-      handleChange(prevState);
-    }
-  }, [entryType]);
-
+function Premium({ strikeParam, handleChange, hideLabel }) {
   return (
-    <div className="flex flex-col gap-2">
-      {hideLabel ? null : (
-        <label htmlFor="premium" className="text-center">
-          Premium
-        </label>
-      )}
-
-      <input
-        type="number"
-        className="w-24 rounded-full px-2 py-1 font-normal"
-        id="premium"
-        value={strikeParam}
-        onChange={(e) => {
-          handleChange(e.target.value);
-          setPrevState((prev) => ({ ...prev, premium: e.target.value }));
-        }}
-      />
-    </div>
+    <NumberInput
+      labelName="Premium"
+      id="premium"
+      value={strikeParam}
+      handleChange={handleChange}
+      hideLabel={hideLabel}
+    />
   );
 }
 

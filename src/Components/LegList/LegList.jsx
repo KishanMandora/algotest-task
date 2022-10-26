@@ -13,6 +13,7 @@ function LegList({ setAllLegs, setShowLegMenu }) {
 
   const hideLegMenu = () => setShowLegMenu(false);
   const handleAddLegs = () => {
+    console.log(state, "state before add");
     setAllLegs((prev) => [
       ...prev,
       { ...state, ...optionalValues, id: uuidv4() },

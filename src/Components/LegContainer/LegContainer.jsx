@@ -15,6 +15,7 @@ function LegContainer() {
       prev.map((leg) => (leg.id === id ? { ...leg, [legType]: value } : leg))
     );
 
+  console.log("all legs", allLegs);
   return (
     <div className="col-span-4 mt-16 py-4 px-10 font-bold text-black-color">
       <div className="mb-3 flex items-center justify-between border-b px-3">

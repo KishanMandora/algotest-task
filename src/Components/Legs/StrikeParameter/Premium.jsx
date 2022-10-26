@@ -6,7 +6,7 @@ function Premium({ strikeParam, id, handleChange, hideLabel }) {
       labelName="Premium"
       id={`premium ${id}`}
       value={strikeParam}
-      handleChange={handleChange}
+      handleChange={(value) => handleChange(parseInt(value))}
       hideLabel={hideLabel}
     />
   );

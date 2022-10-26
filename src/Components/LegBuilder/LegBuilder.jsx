@@ -18,19 +18,18 @@ import {
   useLegsList,
   handleUpdateDispatch,
 } from "../../Context/LegsListContext";
-import { SelectInput } from "../LegForms/SelectInput";
 
 function LegBuilder() {
   const { state, dispatch } = useLegsList();
 
-  const {
-    EntryType,
-    Lots,
-    PositionType,
-    OptionType,
-    ExpiryKind,
-    StrikeParameter,
-  } = state;
+  const { EntryType, Lots, PositionType, OptionType, ExpiryKind, paramValues } =
+    state;
+
+  const retainValueDispatch = handleUpdateDispatch(dispatch, "paramValues");
+  const handleRetainValue = (value, paramType) => {
+    retainValueDispatch({ ...paramValues, [paramType]: value, retain: true });
+  };
+  const handleStrikeParam = handleUpdateDispatch(dispatch, STRIKE_PARAMETER);
 
   return (
     <div className="flex flex-wrap justify-center gap-6 p-4">
@@ -56,8 +55,9 @@ function LegBuilder() {
       />
       <Parameters
         entryType={EntryType}
-        strikeParam={StrikeParameter}
-        handleChange={handleUpdateDispatch(dispatch, STRIKE_PARAMETER)}
+        paramValues={paramValues}
+        handleStrikeParam={handleStrikeParam}
+        handleRetainValue={handleRetainValue}
       />
     </div>
   );

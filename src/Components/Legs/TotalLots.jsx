@@ -7,7 +7,7 @@ function TotalLots({ id, lots, handleChange, hideLabel }) {
       id={`lots ${id}`}
       width="large"
       value={lots}
-      handleChange={handleChange}
+      handleChange={(value) => handleChange(parseInt(value))}
       hideLabel={hideLabel}
     />
   );

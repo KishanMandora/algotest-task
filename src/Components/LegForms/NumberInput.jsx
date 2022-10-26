@@ -10,8 +10,6 @@ function NumberInput({
 }) {
   const widthClass = width === "large" ? "w-20" : "w-16";
 
-  console.log(disable, "diable");
-
   return (
     <div className="flex flex-col gap-2">
       {hideLabel ? null : (
@@ -25,7 +23,6 @@ function NumberInput({
         id={id}
         value={value}
         onChange={(e) => {
-          console.log(e.target.value, "targer");
           handleChange(e.target.value);
         }}
         min={minValue}

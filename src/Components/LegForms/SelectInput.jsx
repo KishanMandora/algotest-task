@@ -15,8 +15,6 @@ function SelectInput({
 
   const widthClass = width === "small" ? "w-24" : "";
 
-  console.log(disable, "diable selet");
-
   return (
     <div className="flex flex-col gap-2">
       {hideLabel ? null : (

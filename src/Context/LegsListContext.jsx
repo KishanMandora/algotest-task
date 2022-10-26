@@ -1,5 +1,12 @@
 import { createContext, useReducer, useContext } from "react";
-import { CALL, POINTS_UP, SELL, STRIKE_TYPE, WEEKLY } from "../constant";
+import {
+  CALL,
+  PLUS,
+  STRIKE_PARAMETER,
+  SELL,
+  STRIKE_TYPE,
+  WEEKLY,
+} from "../constant";
 
 const LegsListContext = createContext();
 
@@ -10,6 +17,13 @@ const initialState = {
   ExpiryKind: WEEKLY,
   EntryType: STRIKE_TYPE,
   StrikeParameter: "ATM",
+  paramValues: {
+    strike: "ATM",
+    premium: 50,
+    premiumRange: { Lower: 50, Upper: 200 },
+    straddle: { Adjustment: PLUS, Multiplier: 0.5 },
+    retain: false,
+  },
 };
 
 function LegsListProvider({ children }) {

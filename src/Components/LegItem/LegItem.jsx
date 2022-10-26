@@ -28,9 +28,23 @@ function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
   };
 
   const handleCopyLeg = (leg) => {
-    console.log(leg, "leg");
     const newLeg = { ...leg, id: uuidv4() };
     setAllLegs((prev) => [...prev, newLeg]);
+  };
+
+  const handleStrikeParam = (id) => handleLegUpdate(id, STRIKE_PARAMETER);
+
+  const handleRetainValue = (id) => (value, paramType) => {
+    setAllLegs((prev) =>
+      prev.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              paramValues: { ...item.paramValues, [paramType]: value },
+            }
+          : item
+      )
+    );
   };
   return (
     <section className="my-8">
@@ -42,7 +56,7 @@ function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
           OptionType,
           ExpiryKind,
           EntryType,
-          StrikeParameter,
+          paramValues,
           LegMomentum,
           LegTarget,
         } = leg;
@@ -108,8 +122,9 @@ function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
               <Parameters
                 entryType={EntryType}
                 id={id}
-                strikeParam={StrikeParameter}
-                handleChange={handleLegUpdate(id, STRIKE_PARAMETER)}
+                paramValues={paramValues}
+                handleStrikeParam={handleStrikeParam(id)}
+                handleRetainValue={handleRetainValue(id)}
                 primaryStyles
                 hideLabel
               />

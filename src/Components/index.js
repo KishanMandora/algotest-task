@@ -11,6 +11,8 @@ export { StrikeCriteria } from "./Legs/StrikeCriteria";
 export { TotalLots } from "./Legs/TotalLots";
 export { Momentum } from "./Legs/Momentum";
 export { TargetProfit } from "./Legs/TargetProfit";
+export { StopLoss } from "./Legs/StopLoss";
+export { TrailSL } from "./Legs/TrailSL";
 export { Parameters } from "./Legs/StrikeParameter/Parameters";
 export { Premium } from "./Legs/StrikeParameter/Premium";
 export { PremiumRange } from "./Legs/StrikeParameter/PremiumRange";

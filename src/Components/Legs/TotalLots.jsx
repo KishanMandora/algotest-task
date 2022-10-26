@@ -9,6 +9,7 @@ function TotalLots({ id, lots, handleChange, hideLabel }) {
       value={lots}
       handleChange={(value) => handleChange(parseInt(value))}
       hideLabel={hideLabel}
+      minValue={1}
     />
   );
 }

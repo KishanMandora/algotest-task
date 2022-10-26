@@ -47,6 +47,8 @@ const legs = {
   STRIKE_PARAMETER: "StrikeParameter",
   LEG_MOMENTUM: "LegMomentum",
   LEG_TARGET: "LegTarget",
+  LEG_STOP_LOSS: "LegStopLoss",
+  LEG_TRAIL_SL: "LegTrailSL",
 };
 
 const momentumType = {
@@ -67,6 +69,18 @@ const targetProfit = {
   PROFIT_UNDER_PERCENTAGE: "LegTgt.UnderlyingPercentage",
 };
 
+const stopLoss = {
+  LOSS_POINTS: "LegTgtSL.Points",
+  LOSS_UNDER_POINTS: "LegTgtSL.UnderlyingPoints",
+  LOSS_PERCENTAGE: "LegTgtSL.Percentage",
+  LOSS_UNDER_PERCENTAGE: "LegTgtSL.UnderlyingPercentage",
+};
+
+const trailSL = {
+  TRAIL_POINTS: "TrailStopLossType.Points",
+  TRAIL_PERCENTAGE: "TrailStopLossType.Percentage",
+};
+
 const { BUY, SELL } = positionType;
 const { CALL, PUT } = optionType;
 const { WEEKLY, MONTHLY } = expiryKind;
@@ -83,6 +97,8 @@ const {
   STRIKE_PARAMETER,
   LEG_MOMENTUM,
   LEG_TARGET,
+  LEG_STOP_LOSS,
+  LEG_TRAIL_SL,
 } = legs;
 
 const {
@@ -102,6 +118,15 @@ const {
   PROFIT_PERCENTAGE,
   PROFIT_UNDER_PERCENTAGE,
 } = targetProfit;
+
+const {
+  LOSS_POINTS,
+  LOSS_UNDER_POINTS,
+  LOSS_PERCENTAGE,
+  LOSS_UNDER_PERCENTAGE,
+} = stopLoss;
+
+const { TRAIL_POINTS, TRAIL_PERCENTAGE } = trailSL;
 
 export {
   SELL,
@@ -143,4 +168,12 @@ export {
   PROFIT_PERCENTAGE,
   PROFIT_UNDER_PERCENTAGE,
   LEG_TARGET,
+  LOSS_POINTS,
+  LOSS_UNDER_POINTS,
+  LOSS_PERCENTAGE,
+  LOSS_UNDER_PERCENTAGE,
+  LEG_STOP_LOSS,
+  TRAIL_POINTS,
+  TRAIL_PERCENTAGE,
+  LEG_TRAIL_SL,
 };

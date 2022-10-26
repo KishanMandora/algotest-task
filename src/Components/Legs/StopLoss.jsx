@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { PROFIT_POINTS } from "../../constant";
-import { targetProfitOptions } from "../../data";
+import { LOSS_POINTS } from "../../constant";
+import { stopLossOptions } from "../../data";
 
 import { SelectInput, NumberInput, CheckboxInput } from "../index";
 
-function TargetProfit({ target, handleChange, id }) {
+function StopLoss({ loss, handleChange, id }) {
   const [editState, setEditState] = useState(false);
   const setOpacity = editState ? "opacity-100" : "opacity-40";
 
-  const { Type = PROFIT_POINTS, Value = 0 } = target;
+  const { Type = LOSS_POINTS, Value = 0 } = loss;
 
   const handleTypeChange = (value) =>
     handleChange({
@@ -25,8 +25,8 @@ function TargetProfit({ target, handleChange, id }) {
   return (
     <div className="flex flex-col gap-4">
       <CheckboxInput
-        id={`profit ${id}`}
-        labelName="Target Profit"
+        id={`loss ${id}`}
+        labelName="Stop Loss"
         editState={editState}
         setEditState={setEditState}
       />
@@ -34,7 +34,7 @@ function TargetProfit({ target, handleChange, id }) {
         <SelectInput
           value={Type}
           handleChange={handleTypeChange}
-          optionsData={targetProfitOptions}
+          optionsData={stopLossOptions}
           primaryStyles={true}
           disable={!editState}
           width="small"
@@ -53,4 +53,4 @@ function TargetProfit({ target, handleChange, id }) {
   );
 }
 
-export { TargetProfit };
+export { StopLoss };

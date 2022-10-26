@@ -27,6 +27,12 @@ import {
   PROFIT_PERCENTAGE,
   PROFIT_UNDER_POINTS,
   PROFIT_UNDER_PERCENTAGE,
+  LOSS_POINTS,
+  LOSS_UNDER_POINTS,
+  LOSS_PERCENTAGE,
+  LOSS_UNDER_PERCENTAGE,
+  TRAIL_POINTS,
+  TRAIL_PERCENTAGE,
 } from "./constant";
 
 const positionOptions = [
@@ -82,6 +88,18 @@ const targetProfitOptions = [
   { optionTitle: "Underlying Percentage", value: PROFIT_UNDER_PERCENTAGE },
 ];
 
+const stopLossOptions = [
+  { optionTitle: "Points", value: LOSS_POINTS },
+  { optionTitle: "Underlying Points", value: LOSS_UNDER_POINTS },
+  { optionTitle: "Percentage", value: LOSS_PERCENTAGE },
+  { optionTitle: "Underlying Percentage", value: LOSS_UNDER_PERCENTAGE },
+];
+
+const trailSLOptions = [
+  { optionTitle: "Points", value: TRAIL_POINTS },
+  { optionTitle: "Percentage", value: TRAIL_PERCENTAGE },
+];
+
 export {
   positionOptions,
   optionTypesOptions,
@@ -91,4 +109,6 @@ export {
   adjustmentOptions,
   momentumOption,
   targetProfitOptions,
+  stopLossOptions,
+  trailSLOptions,
 };

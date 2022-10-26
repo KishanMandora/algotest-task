@@ -24,14 +24,14 @@ function Momentum({ momentum, handleChange, id }) {
     });
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div className="flex flex-col gap-4">
       <CheckboxInput
         id={`momentum ${id}`}
         labelName="Simple Momentum"
         editState={editState}
         setEditState={setEditState}
       />
-      <div className={`flex gap-4 ${setOpacity}`}>
+      <div className={`flex gap-2 ${setOpacity}`}>
         <SelectInput
           value={Type}
           handleChange={handleTypeChange}

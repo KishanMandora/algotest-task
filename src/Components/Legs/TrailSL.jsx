@@ -1,14 +1,15 @@
 import { useState } from "react";
-import { PROFIT_POINTS } from "../../constant";
-import { targetProfitOptions } from "../../data";
+import { TRAIL_POINTS } from "../../constant";
+import { trailSLOptions } from "../../data";
 
 import { SelectInput, NumberInput, CheckboxInput } from "../index";
 
-function TargetProfit({ target, handleChange, id }) {
+function TrailSL({ trailSL, handleChange, id }) {
   const [editState, setEditState] = useState(false);
   const setOpacity = editState ? "opacity-100" : "opacity-40";
 
-  const { Type = PROFIT_POINTS, Value = 0 } = target;
+  const { Type = TRAIL_POINTS, Value } = trailSL;
+  const { InstrumentMove = 0, StopLossMove = 0 } = Value;
 
   const handleTypeChange = (value) =>
     handleChange({
@@ -16,17 +17,23 @@ function TargetProfit({ target, handleChange, id }) {
       Value,
     });
 
-  const handleValueChange = (value) =>
+  const handleInstrumentChange = (value) =>
     handleChange({
       Type,
-      Value: parseInt(value),
+      Value: { ...Value, InstrumentMove: parseInt(value) },
+    });
+
+  const handleLossChange = (value) =>
+    handleChange({
+      Type,
+      Value: { ...Value, StopLossMove: parseInt(value) },
     });
 
   return (
     <div className="flex flex-col gap-4">
       <CheckboxInput
-        id={`profit ${id}`}
-        labelName="Target Profit"
+        id={`trail ${id}`}
+        labelName="Trail SL"
         editState={editState}
         setEditState={setEditState}
       />
@@ -34,7 +41,7 @@ function TargetProfit({ target, handleChange, id }) {
         <SelectInput
           value={Type}
           handleChange={handleTypeChange}
-          optionsData={targetProfitOptions}
+          optionsData={trailSLOptions}
           primaryStyles={true}
           disable={!editState}
           width="small"
@@ -42,9 +49,14 @@ function TargetProfit({ target, handleChange, id }) {
         />
 
         <NumberInput
-          value={Value}
-          handleChange={handleValueChange}
-          min={0}
+          value={InstrumentMove}
+          handleChange={handleInstrumentChange}
+          disable={!editState}
+          hideLabel
+        />
+        <NumberInput
+          value={StopLossMove}
+          handleChange={handleLossChange}
           disable={!editState}
           hideLabel
         />
@@ -53,4 +65,4 @@ function TargetProfit({ target, handleChange, id }) {
   );
 }
 
-export { TargetProfit };
+export { TrailSL };

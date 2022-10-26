@@ -1,11 +1,21 @@
 import { v4 as uuidv4 } from "uuid";
 import { LegBuilder } from "..";
-import { POINTS_UP, PROFIT_POINTS } from "../../constant";
+import {
+  POINTS_UP,
+  PROFIT_POINTS,
+  LOSS_POINTS,
+  TRAIL_POINTS,
+} from "../../constant";
 import { resetLegState, useLegsList } from "../../Context/LegsListContext";
 
-const optionalValues = {
+const optionalLegs = {
   LegMomentum: { Type: POINTS_UP, Value: 0 },
   LegTarget: { Type: PROFIT_POINTS, Value: 0 },
+  LegStopLoss: { Type: LOSS_POINTS, Value: 0 },
+  LegTrailSL: {
+    Type: TRAIL_POINTS,
+    Value: { InstrumentMove: 0, StopLossMove: 0 },
+  },
 };
 
 function LegList({ setAllLegs, setShowLegMenu }) {
@@ -16,13 +26,13 @@ function LegList({ setAllLegs, setShowLegMenu }) {
     console.log(state, "state before add");
     setAllLegs((prev) => [
       ...prev,
-      { ...state, ...optionalValues, id: uuidv4() },
+      { ...state, ...optionalLegs, id: uuidv4() },
     ]);
     resetLegState(dispatch);
   };
 
   return (
-    <div className="flex flex-col items-center p-4 text-xs">
+    <div className="flex flex-col items-center bg-form-background p-4 text-xs">
       <div className="flex items-center gap-2">
         <div> Select Segments </div>
         <div className="flex">

@@ -1,7 +1,7 @@
 function NumberInput({
   labelName = "",
   id = "",
-  minValue = 1,
+  minValue = 0,
   disable = false,
   value,
   handleChange,

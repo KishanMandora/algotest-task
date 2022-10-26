@@ -10,6 +10,8 @@ import {
   CopySvg,
   Momentum,
   TargetProfit,
+  StopLoss,
+  TrailSL,
 } from "..";
 import {
   ENTRY_TYPE,
@@ -20,6 +22,8 @@ import {
   STRIKE_PARAMETER,
   LEG_MOMENTUM,
   LEG_TARGET,
+  LEG_STOP_LOSS,
+  LEG_TRAIL_SL,
 } from "../../constant";
 
 function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
@@ -59,6 +63,8 @@ function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
           paramValues,
           LegMomentum,
           LegTarget,
+          LegStopLoss,
+          LegTrailSL,
         } = leg;
 
         return (
@@ -129,7 +135,7 @@ function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
                 hideLabel
               />
             </div>
-            <div className="mt-6 flex justify-center gap-2">
+            <div className="mt-6 flex justify-center gap-6">
               <Momentum
                 momentum={LegMomentum}
                 id={id}
@@ -139,6 +145,16 @@ function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
                 target={LegTarget}
                 id={id}
                 handleChange={handleLegUpdate(id, LEG_TARGET)}
+              />
+              <StopLoss
+                loss={LegStopLoss}
+                id={id}
+                handleChange={handleLegUpdate(id, LEG_STOP_LOSS)}
+              />
+              <TrailSL
+                trailSL={LegTrailSL}
+                id={id}
+                handleChange={handleLegUpdate(id, LEG_TRAIL_SL)}
               />
             </div>
           </div>

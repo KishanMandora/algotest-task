@@ -4,6 +4,7 @@ import { LegList, LegItem } from "..";
 
 function LegContainer() {
   const [allLegs, setAllLegs] = useState([]);
+  const [legJson, setLegJson] = useState(null);
   const [showLegMenu, setShowLegMenu] = useState(true);
 
   const isActive = showLegMenu ? "opacity-20" : "";
@@ -14,6 +15,18 @@ function LegContainer() {
     setAllLegs((prev) =>
       prev.map((leg) => (leg.id === id ? { ...leg, [legType]: value } : leg))
     );
+
+  const handleLegJson = () => {
+    console.log("from leg json ");
+    setLegJson(
+      allLegs.reduce((prev, curr) => {
+        const filteredLeg = { ...curr };
+        delete filteredLeg.id;
+        delete filteredLeg.paramValues;
+        return prev + JSON.stringify(filteredLeg, null, 2) + "\n";
+      }, "")
+    );
+  };
 
   console.log("all legs", allLegs);
   return (
@@ -34,6 +47,29 @@ function LegContainer() {
         setAllLegs={setAllLegs}
         handleLegUpdate={handleLegUpdate}
       />
+
+      <div>
+        <div className="mb-3 flex items-center justify-between border-b px-3">
+          <div>
+            <span className="text-sm"> Legs JSON</span>
+          </div>
+          <div>
+            <button
+              className="rounded-md border-2 border-primary-color px-4 py-2 text-sm"
+              onClick={handleLegJson}
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+        <section>
+          {legJson ? (
+            <div className="rounded-md bg-white-color p-4 font-normal">
+              <pre> {legJson} </pre>
+            </div>
+          ) : null}
+        </section>
+      </div>
     </div>
   );
 }

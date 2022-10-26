@@ -5,12 +5,16 @@ function Position({
   handleChange,
   bgClr = "bg-white-color",
   txtClr = "text-black-color",
+  hideLabel,
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor="position" className="text-center">
-        Position
-      </label>
+      {hideLabel ? null : (
+        <label htmlFor="position" className="text-center">
+          Position
+        </label>
+      )}
+
       <select
         className={`rounded-full px-2 py-1 font-normal ${bgClr} ${txtClr}`}
         id="position"

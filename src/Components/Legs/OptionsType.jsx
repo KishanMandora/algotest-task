@@ -5,12 +5,16 @@ function OptionsType({
   handleChange,
   bgClr = "bg-white-color",
   txtClr = "text-black-color",
+  hideLabel,
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor="optionType" className="text-center">
-        Option Type
-      </label>
+      {hideLabel ? null : (
+        <label htmlFor="optionType" className="text-center">
+          Option Type
+        </label>
+      )}
+
       <select
         className={`rounded-full px-2 py-1 font-normal ${bgClr} ${txtClr}`}
         id="optionType"

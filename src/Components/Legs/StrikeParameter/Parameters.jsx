@@ -12,7 +12,7 @@ import {
   STRADDLE_WIDTH,
 } from "../../../constant";
 
-function Parameters({ strikeParam, handleChange, entryType }) {
+function Parameters({ strikeParam, handleChange, entryType, hideLabel }) {
   const [parameters, setParameters] = useState({
     strike: ATM,
     premium: 50,
@@ -32,6 +32,7 @@ function Parameters({ strikeParam, handleChange, entryType }) {
           setPrevState={setParameters}
           prevState={strike}
           entryType={entryType}
+          hideLabel={hideLabel}
         />
       ) : null}
       {entryType === PREMIUM ? (
@@ -41,6 +42,7 @@ function Parameters({ strikeParam, handleChange, entryType }) {
           setPrevState={setParameters}
           prevState={premium}
           entryType={entryType}
+          hideLabel={hideLabel}
         />
       ) : null}
       {entryType === PREMIUM_RANGE ? (
@@ -50,6 +52,7 @@ function Parameters({ strikeParam, handleChange, entryType }) {
           setPrevState={setParameters}
           prevState={range}
           entryType={entryType}
+          hideLabel={hideLabel}
         />
       ) : null}
       {entryType === STRADDLE_WIDTH ? (

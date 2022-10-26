@@ -16,3 +16,5 @@ export { StrikeType } from "./Legs/StrikeParameter/StrikeType";
 export { IconSvg } from "./SVGs/IconSvg";
 export { TwitterSvg } from "./SVGs/TwitterSvg";
 export { YoutubeSvg } from "./SVGs/YoutubeSvg";
+export { DeleteSvg } from "./SVGs/DeleteSvg";
+export { CopySvg } from "./SVGs/CopySvg";

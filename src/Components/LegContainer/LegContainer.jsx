@@ -8,6 +8,8 @@ import {
   Expiry,
   StrikeCriteria,
   Parameters,
+  DeleteSvg,
+  CopySvg,
 } from "..";
 import {
   ENTRY_TYPE,
@@ -33,7 +35,7 @@ function LegContainer() {
     );
 
   return (
-    <div className="col-span-4 mt-16 p-4 font-bold text-black-color">
+    <div className="col-span-4 mt-16 py-4 px-10 font-bold text-black-color">
       <div className="mb-3 flex items-center justify-between border-b px-3">
         <span className="text-sm"> Legs</span>
         <span className={`text-lg text-primary-color ${isActive}`}>
@@ -45,7 +47,7 @@ function LegContainer() {
           <LegList setAllLegs={setAllLegs} setShowLegMenu={setShowLegMenu} />
         </LegsListProvider>
       ) : null}
-      <section>
+      <section className="my-8">
         {allLegs.map((leg) => {
           const {
             id,
@@ -58,40 +60,64 @@ function LegContainer() {
           } = leg;
           console.log(PositionType, "position  from map");
           return (
-            <div className="rounded-md bg-form-background p-4" key={id}>
-              <div className="flex">
-                <TotalLots
-                  lots={Lots}
-                  handleChange={handleLegUpdate(id, LOTS)}
-                />
+            <div
+              className="relative rounded-md bg-form-background p-4 text-xs"
+              key={id}
+            >
+              <div className="absolute top-[-12px] right-[-12px] flex flex-col gap-3">
+                <button>
+                  <DeleteSvg />
+                </button>
+                <button className="rounded-full bg-white-color p-[6px]">
+                  <CopySvg />
+                </button>
+              </div>
+              <div className="flex justify-center gap-2">
+                <div className="flex items-center gap-2">
+                  <span> Lots </span>
+                  <TotalLots
+                    lots={Lots}
+                    handleChange={handleLegUpdate(id, LOTS)}
+                    hideLabel
+                  />
+                </div>
                 <Position
                   position={PositionType}
                   handleChange={handleLegUpdate(id, POSITION_TYPE)}
                   bgClr="bg-primary-color"
                   txtClr="text-white-color"
+                  hideLabel
                 />
                 <OptionsType
                   options={OptionType}
                   handleChange={handleLegUpdate(id, OPTION_TYPE)}
                   bgClr="bg-primary-color"
                   txtClr="text-white-color"
+                  hideLabel
                 />
                 <Expiry
                   expiry={ExpiryKind}
                   handleChange={handleLegUpdate(id, EXPIRY_KIND)}
                   bgClr="bg-primary-color"
                   txtClr="text-white-color"
+                  hideLabel
                 />
-                <StrikeCriteria
-                  entryType={EntryType}
-                  handleChange={handleLegUpdate(id, ENTRY_TYPE)}
-                  bgClr="bg-primary-color"
-                  txtClr="text-white-color"
-                />
+                <div className="flex items-center gap-2">
+                  <span> Select Strike </span>
+                  <StrikeCriteria
+                    entryType={EntryType}
+                    handleChange={handleLegUpdate(id, ENTRY_TYPE)}
+                    bgClr="bg-primary-color"
+                    txtClr="text-white-color"
+                    hideLabel
+                  />
+                </div>
+
                 <Parameters
                   entryType={EntryType}
                   strikeParam={StrikeParameter}
                   handleChange={handleLegUpdate(id, STRIKE_PARAMETER)}
+                  hideLabel
                 />
               </div>
             </div>

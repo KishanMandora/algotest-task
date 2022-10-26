@@ -7,6 +7,7 @@ function PremiumRange({
   prevState,
   entryType,
   setPrevState,
+  hideLabel,
 }) {
   const { Lower = 50, Upper = 200 } = strikeParam;
 
@@ -31,9 +32,12 @@ function PremiumRange({
   return (
     <div className="flex gap-2">
       <div className="flex flex-col gap-2">
-        <label htmlFor="lower" className="text-center">
-          Lower Range
-        </label>
+        {hideLabel ? null : (
+          <label htmlFor="lower" className="text-center">
+            Lower Range
+          </label>
+        )}
+
         <input
           type="number"
           className="w-24 rounded-full px-2 py-1 font-normal"
@@ -49,9 +53,11 @@ function PremiumRange({
         />
       </div>
       <div className="flex flex-col gap-2">
-        <label htmlFor="upper" className="text-center">
-          Upper Range
-        </label>
+        {hideLabel ? null : (
+          <label htmlFor="upper" className="text-center">
+            Upper Range
+          </label>
+        )}
         <input
           type="number"
           className="w-24 rounded-full px-2 py-1 font-normal"

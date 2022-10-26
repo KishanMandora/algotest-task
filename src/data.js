@@ -16,6 +16,17 @@ import {
   OTM4,
   PLUS,
   MINUS,
+  POINTS_UP,
+  POINTS_DOWN,
+  PERCENTAGE_UP,
+  PERCENTAGE_DOWN,
+  UNDER_POINTS_UP,
+  UNDER_POINTS_DOWN,
+  UNDER_PERCENTAGE_UP,
+  PROFIT_POINTS,
+  PROFIT_PERCENTAGE,
+  PROFIT_UNDER_POINTS,
+  PROFIT_UNDER_PERCENTAGE,
 } from "./constant";
 
 const positionOptions = [
@@ -53,6 +64,24 @@ const strikeTypeOptions = [
   { optionTitle: "0TM4", value: OTM4 },
 ];
 
+const momentumOption = [
+  { optionTitle: "Points ↑", value: POINTS_UP },
+  { optionTitle: "Points ↓", value: POINTS_DOWN },
+  { optionTitle: "Percentage ↑", value: PERCENTAGE_UP },
+  { optionTitle: "Percentage ↓", value: PERCENTAGE_DOWN },
+  { optionTitle: "Underlying Points ↑", value: UNDER_POINTS_UP },
+  { optionTitle: "Underlying Points ↓", value: UNDER_POINTS_DOWN },
+  { optionTitle: "Underlying Percentage ↑", value: UNDER_PERCENTAGE_UP },
+  { optionTitle: "Underlying Percentage ↓", value: UNDER_POINTS_DOWN },
+];
+
+const targetProfitOptions = [
+  { optionTitle: "Points", value: PROFIT_POINTS },
+  { optionTitle: "Underlying Points", value: PROFIT_UNDER_POINTS },
+  { optionTitle: "Percentage", value: PROFIT_PERCENTAGE },
+  { optionTitle: "Underlying Percentage", value: PROFIT_UNDER_PERCENTAGE },
+];
+
 export {
   positionOptions,
   optionTypesOptions,
@@ -60,4 +89,6 @@ export {
   strikeCriteriaOptions,
   strikeTypeOptions,
   adjustmentOptions,
+  momentumOption,
+  targetProfitOptions,
 };

@@ -1,17 +1,21 @@
-import React from "react";
-
 function SelectInput({
   labelName = "",
   id = "",
+  disable = false,
   value,
   handleChange,
   optionsData,
   primaryStyles,
   hideLabel,
+  width,
 }) {
   const addPrimaryStyles = primaryStyles
     ? `bg-primary-color text-white-color`
     : `bg-white-color text-black-color`;
+
+  const widthClass = width === "small" ? "w-24" : "";
+
+  console.log(disable, "diable selet");
 
   return (
     <div className="flex flex-col gap-2">
@@ -22,10 +26,11 @@ function SelectInput({
       )}
 
       <select
-        className={`rounded-full px-2 py-1 font-normal ${addPrimaryStyles}`}
+        className={`rounded-full px-2 py-1 font-normal ${addPrimaryStyles} ${widthClass}`}
         id={id}
         value={value}
         onChange={(e) => handleChange(e.target.value)}
+        disabled={disable}
       >
         {optionsData.map(({ optionTitle, value }) => (
           <option key={optionTitle} value={value}>

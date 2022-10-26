@@ -1,12 +1,21 @@
 import { LegBuilder } from "..";
+import { POINTS_UP, PROFIT_POINTS } from "../../constant";
 import { resetLegState, useLegsList } from "../../Context/LegsListContext";
+
+const optionalValues = {
+  LegMomentum: { Type: POINTS_UP, Value: 0 },
+  LegTarget: { Type: PROFIT_POINTS, Value: 0 },
+};
 
 function LegList({ setAllLegs, setShowLegMenu }) {
   const { state, dispatch } = useLegsList();
 
   const hideLegMenu = () => setShowLegMenu(false);
   const handleAddLegs = () => {
-    setAllLegs((prev) => [...prev, { ...state, id: Math.random() }]);
+    setAllLegs((prev) => [
+      ...prev,
+      { ...state, ...optionalValues, id: Math.random() },
+    ]);
     resetLegState(dispatch);
   };
 

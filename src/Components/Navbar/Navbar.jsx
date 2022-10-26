@@ -2,7 +2,7 @@ import { IconSvg, TwitterSvg, YoutubeSvg } from "..";
 
 function Navbar() {
   return (
-    <header className="fixed top-0 flex h-12 w-full items-center bg-black-color py-2 text-white-color">
+    <header className="fixed top-0 z-10 flex h-12 w-full items-center bg-black-color py-2 text-white-color">
       <nav className="m-auto flex w-9/10 items-center justify-between">
         <div>
           <a href="https://algotest.in/" className="flex items-center gap-4">

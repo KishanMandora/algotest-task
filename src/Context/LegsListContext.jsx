@@ -1,5 +1,5 @@
 import { createContext, useReducer, useContext } from "react";
-import { CALL, SELL, STRIKE_TYPE, WEEKLY } from "../constant";
+import { CALL, POINTS_UP, SELL, STRIKE_TYPE, WEEKLY } from "../constant";
 
 const LegsListContext = createContext();
 

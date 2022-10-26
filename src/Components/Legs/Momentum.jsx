@@ -5,7 +5,7 @@ import { CheckboxInput } from "../LegForms/CheckboxInput";
 import { NumberInput } from "../LegForms/NumberInput";
 import { SelectInput } from "../LegForms/SelectInput";
 
-function Momentum({ momentum, handleChange }) {
+function Momentum({ momentum, handleChange, id }) {
   const [editState, setEditState] = useState(false);
   const setOpacity = editState ? "opacity-100" : "opacity-40";
 
@@ -26,7 +26,7 @@ function Momentum({ momentum, handleChange }) {
   return (
     <div className="flex flex-col items-center gap-4">
       <CheckboxInput
-        id="momentum"
+        id={`momentum ${id}`}
         labelName="Simple Momentum"
         editState={editState}
         setEditState={setEditState}

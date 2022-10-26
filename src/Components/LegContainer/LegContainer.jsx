@@ -28,7 +28,11 @@ function LegContainer() {
           <LegList setAllLegs={setAllLegs} setShowLegMenu={setShowLegMenu} />
         </LegsListProvider>
       ) : null}
-      <LegItem allLegs={allLegs} handleLegUpdate={handleLegUpdate} />
+      <LegItem
+        allLegs={allLegs}
+        setAllLegs={setAllLegs}
+        handleLegUpdate={handleLegUpdate}
+      />
     </div>
   );
 }

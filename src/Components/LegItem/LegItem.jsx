@@ -21,7 +21,7 @@ import {
   LEG_TARGET,
 } from "../../constant";
 
-function LegItem({ allLegs, handleLegUpdate }) {
+function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
   return (
     <section className="my-8">
       {allLegs.map((leg) => {
@@ -43,10 +43,19 @@ function LegItem({ allLegs, handleLegUpdate }) {
             key={id}
           >
             <div className="absolute top-[-12px] right-[-12px] flex flex-col gap-3">
-              <button>
+              <button
+                onClick={() =>
+                  setAllLegs((prev) => prev.filter((item) => item.id !== id))
+                }
+              >
                 <DeleteSvg />
               </button>
-              <button className="rounded-full bg-white-color p-[6px]">
+              <button
+                className="rounded-full bg-white-color p-[6px]"
+                onClick={() =>
+                  setAllLegs((prev) => [...prev, { ...leg, id: Math.random }])
+                }
+              >
                 <CopySvg />
               </button>
             </div>
@@ -98,10 +107,12 @@ function LegItem({ allLegs, handleLegUpdate }) {
             <div className="mt-6 flex justify-center gap-2">
               <Momentum
                 momentum={LegMomentum}
+                // id={id}
                 handleChange={handleLegUpdate(id, LEG_MOMENTUM)}
               />
               <TargetProfit
                 target={LegTarget}
+                // id={id}
                 handleChange={handleLegUpdate(id, LEG_TARGET)}
               />
             </div>

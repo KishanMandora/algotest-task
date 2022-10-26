@@ -4,7 +4,7 @@ import { targetProfitOptions } from "../../data";
 
 import { SelectInput, NumberInput, CheckboxInput } from "../index";
 
-function TargetProfit({ target, handleChange }) {
+function TargetProfit({ target, handleChange, id }) {
   const [editState, setEditState] = useState(false);
   const setOpacity = editState ? "opacity-100" : "opacity-40";
 
@@ -25,7 +25,7 @@ function TargetProfit({ target, handleChange }) {
   return (
     <div className="flex flex-col items-center gap-4">
       <CheckboxInput
-        id="profit"
+        id={`profit ${id}`}
         labelName="Target Profit"
         editState={editState}
         setEditState={setEditState}

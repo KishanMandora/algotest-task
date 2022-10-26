@@ -1,11 +1,17 @@
 import { SelectInput } from "../../LegForms/SelectInput";
 import { strikeTypeOptions } from "../../../data";
 
-function StrikeType({ strikeParam, handleChange, primaryStyles, hideLabel }) {
+function StrikeType({
+  strikeParam,
+  id,
+  handleChange,
+  primaryStyles,
+  hideLabel,
+}) {
   return (
     <SelectInput
       labelName="Strike Type"
-      id="strike"
+      id={`strike ${id}`}
       value={strikeParam}
       handleChange={handleChange}
       optionsData={strikeTypeOptions}

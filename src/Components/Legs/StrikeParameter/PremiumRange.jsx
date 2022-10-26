@@ -1,6 +1,6 @@
 import { NumberInput } from "../../LegForms/NumberInput";
 
-function PremiumRange({ strikeParam, handleChange, hideLabel }) {
+function PremiumRange({ strikeParam, id, handleChange, hideLabel }) {
   const { Lower = 50, Upper = 200 } = strikeParam;
 
   const handlePremiumLow = (value) =>
@@ -19,14 +19,14 @@ function PremiumRange({ strikeParam, handleChange, hideLabel }) {
     <div className="flex gap-2">
       <NumberInput
         labelName="Lower Range"
-        id="lower"
+        id={`lower ${id}`}
         value={Lower}
         handleChange={handlePremiumLow}
         hideLabel={hideLabel}
       />
       <NumberInput
         labelName="Upper Range"
-        id="upper"
+        id={`upper ${id}`}
         value={Upper}
         handleChange={handlePremiumUp}
         hideLabel={hideLabel}

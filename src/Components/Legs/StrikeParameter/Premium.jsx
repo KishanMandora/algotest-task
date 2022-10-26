@@ -1,10 +1,10 @@
 import { NumberInput } from "../../LegForms/NumberInput";
 
-function Premium({ strikeParam, handleChange, hideLabel }) {
+function Premium({ strikeParam, id, handleChange, hideLabel }) {
   return (
     <NumberInput
       labelName="Premium"
-      id="premium"
+      id={`premium ${id}`}
       value={strikeParam}
       handleChange={handleChange}
       hideLabel={hideLabel}

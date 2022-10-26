@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import {
   TotalLots,
   Position,
@@ -22,6 +23,15 @@ import {
 } from "../../constant";
 
 function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
+  const handleDeleteLeg = (id) => {
+    setAllLegs((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const handleCopyLeg = (leg) => {
+    console.log(leg, "leg");
+    const newLeg = { ...leg, id: uuidv4() };
+    setAllLegs((prev) => [...prev, newLeg]);
+  };
   return (
     <section className="my-8">
       {allLegs.map((leg) => {
@@ -43,18 +53,12 @@ function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
             key={id}
           >
             <div className="absolute top-[-12px] right-[-12px] flex flex-col gap-3">
-              <button
-                onClick={() =>
-                  setAllLegs((prev) => prev.filter((item) => item.id !== id))
-                }
-              >
+              <button onClick={() => handleDeleteLeg(id)}>
                 <DeleteSvg />
               </button>
               <button
                 className="rounded-full bg-white-color p-[6px]"
-                onClick={() =>
-                  setAllLegs((prev) => [...prev, { ...leg, id: Math.random }])
-                }
+                onClick={() => handleCopyLeg(leg)}
               >
                 <CopySvg />
               </button>
@@ -63,24 +67,28 @@ function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
               <div className="flex items-center gap-2">
                 <span> Lots </span>
                 <TotalLots
+                  id={id}
                   lots={Lots}
                   handleChange={handleLegUpdate(id, LOTS)}
                   hideLabel
                 />
               </div>
               <Position
+                id={id}
                 position={PositionType}
                 handleChange={handleLegUpdate(id, POSITION_TYPE)}
                 primaryStyles
                 hideLabel
               />
               <OptionsType
+                id={id}
                 options={OptionType}
                 handleChange={handleLegUpdate(id, OPTION_TYPE)}
                 primaryStyles
                 hideLabel
               />
               <Expiry
+                id={id}
                 expiry={ExpiryKind}
                 handleChange={handleLegUpdate(id, EXPIRY_KIND)}
                 primaryStyles
@@ -89,6 +97,7 @@ function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
               <div className="flex items-center gap-2">
                 <span> Select Strike </span>
                 <StrikeCriteria
+                  id={id}
                   entryType={EntryType}
                   handleChange={handleLegUpdate(id, ENTRY_TYPE)}
                   primaryStyles
@@ -98,6 +107,7 @@ function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
 
               <Parameters
                 entryType={EntryType}
+                id={id}
                 strikeParam={StrikeParameter}
                 handleChange={handleLegUpdate(id, STRIKE_PARAMETER)}
                 primaryStyles
@@ -107,12 +117,12 @@ function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
             <div className="mt-6 flex justify-center gap-2">
               <Momentum
                 momentum={LegMomentum}
-                // id={id}
+                id={id}
                 handleChange={handleLegUpdate(id, LEG_MOMENTUM)}
               />
               <TargetProfit
                 target={LegTarget}
-                // id={id}
+                id={id}
                 handleChange={handleLegUpdate(id, LEG_TARGET)}
               />
             </div>

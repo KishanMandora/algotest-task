@@ -1,10 +1,10 @@
 import { NumberInput } from "../LegForms/NumberInput";
 
-function TotalLots({ lots, handleChange, hideLabel }) {
+function TotalLots({ id, lots, handleChange, hideLabel }) {
   return (
     <NumberInput
       labelName="Total Lots"
-      id="lots"
+      id={`lots ${id}`}
       width="large"
       value={lots}
       handleChange={handleChange}

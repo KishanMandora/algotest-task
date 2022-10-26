@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { LegBuilder } from "..";
 import { POINTS_UP, PROFIT_POINTS } from "../../constant";
 import { resetLegState, useLegsList } from "../../Context/LegsListContext";
@@ -14,7 +15,7 @@ function LegList({ setAllLegs, setShowLegMenu }) {
   const handleAddLegs = () => {
     setAllLegs((prev) => [
       ...prev,
-      { ...state, ...optionalValues, id: Math.random() },
+      { ...state, ...optionalValues, id: uuidv4() },
     ]);
     resetLegState(dispatch);
   };

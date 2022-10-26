@@ -1,11 +1,11 @@
 import { positionOptions } from "../../data";
 import { SelectInput } from "../LegForms/SelectInput";
 
-function Position({ position, handleChange, primaryStyles, hideLabel }) {
+function Position({ position, id, handleChange, primaryStyles, hideLabel }) {
   return (
     <SelectInput
       labelName="Position"
-      id="position"
+      id={`position ${id}`}
       value={position}
       handleChange={handleChange}
       optionsData={positionOptions}

@@ -13,6 +13,7 @@ import {
 } from "../../../constant";
 
 function Parameters({
+  id,
   strikeParam,
   handleChange,
   entryType,
@@ -23,6 +24,7 @@ function Parameters({
     <div>
       {entryType === STRIKE_TYPE ? (
         <StrikeType
+          id={id}
           strikeParam={strikeParam}
           handleChange={handleChange}
           hideLabel={hideLabel}
@@ -31,6 +33,7 @@ function Parameters({
       ) : null}
       {entryType === PREMIUM ? (
         <Premium
+          id={id}
           strikeParam={strikeParam}
           handleChange={handleChange}
           hideLabel={hideLabel}
@@ -38,6 +41,7 @@ function Parameters({
       ) : null}
       {entryType === PREMIUM_RANGE ? (
         <PremiumRange
+          id={id}
           strikeParam={strikeParam}
           handleChange={handleChange}
           hideLabel={hideLabel}

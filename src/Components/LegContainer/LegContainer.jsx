@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { LegsListProvider } from "../../Context/LegsListContext";
 import { LegList, LegItem } from "..";
+import { addData, fetchData } from "../../helpers/firebase.config";
 
 function LegContainer() {
   const [allLegs, setAllLegs] = useState([]);
-  const [legJson, setLegJson] = useState(null);
+  const [legJson, setLegJson] = useState("");
   const [showLegMenu, setShowLegMenu] = useState(true);
 
   const isActive = showLegMenu ? "opacity-20" : "";
@@ -16,19 +17,20 @@ function LegContainer() {
       prev.map((leg) => (leg.id === id ? { ...leg, [legType]: value } : leg))
     );
 
-  const handleLegJson = () => {
-    console.log("from leg json ");
-    setLegJson(
-      allLegs.reduce((prev, curr) => {
-        const filteredLeg = { ...curr };
-        delete filteredLeg.id;
-        delete filteredLeg.paramValues;
-        return prev + JSON.stringify(filteredLeg, null, 2) + "\n";
-      }, "")
-    );
+  const handleFirestoreUpdate = () => {
+    allLegs.forEach((leg) => {
+      const filterLeg = { ...leg };
+      delete filterLeg.id;
+      delete filterLeg.paramValues;
+      addData(filterLeg);
+    });
   };
 
+  console.log("API key", import.meta.env.VITE_API_KEY);
+
   console.log("all legs", allLegs);
+  console.log("legs json", legJson);
+
   return (
     <div className="col-span-4 mt-16 py-4 px-10 font-bold text-black-color">
       <div className="mb-3 flex items-center justify-between border-b px-3">
@@ -49,14 +51,20 @@ function LegContainer() {
       />
 
       <div>
-        <div className="mb-3 flex items-center justify-between border-b px-3">
+        <div className="mb-3 flex items-center justify-between border-b px-3 py-2 text-sm">
           <div>
-            <span className="text-sm"> Legs JSON</span>
+            <span> Legs JSON</span>
           </div>
-          <div>
+          <div className="flex gap-2">
             <button
-              className="rounded-md border-2 border-primary-color px-4 py-2 text-sm"
-              onClick={handleLegJson}
+              className="rounded-full bg-white-color py-1  px-8 font-normal text-primary-color"
+              onClick={() => fetchData(setLegJson)}
+            >
+              Fetch List
+            </button>
+            <button
+              className="rounded-full bg-primary-color py-1 px-8 font-normal text-white-color"
+              onClick={handleFirestoreUpdate}
             >
               Submit
             </button>

@@ -7,7 +7,7 @@ import {
   TRAIL_POINTS,
 } from "../../constant";
 import { resetLegState, useLegsList } from "../../Context/LegsListContext";
-
+import { toast } from "../Toast/Toast";
 const optionalLegs = {
   LegMomentum: { Type: POINTS_UP, Value: 0 },
   LegTarget: { Type: PROFIT_POINTS, Value: 0 },
@@ -29,6 +29,7 @@ function LegList({ setAllLegs, setShowLegMenu }) {
       { ...state, ...optionalLegs, id: uuidv4() },
     ]);
     resetLegState(dispatch);
+    toast("Leg Added Successfully", "success");
   };
 
   return (

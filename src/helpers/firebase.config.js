@@ -8,6 +8,8 @@ import {
   orderBy,
   serverTimestamp,
 } from "firebase/firestore";
+import { toast } from "../Components/Toast/Toast";
+import { sortedObj } from "./utils";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -18,14 +20,12 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_APP_ID,
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore();
 
 const colRef = collection(db, "legs");
 
-// query reference
 const queryRef = query(colRef, orderBy("createdAt"));
 
 export const fetchData = async (setLegJson) => {
@@ -37,16 +37,11 @@ export const fetchData = async (setLegJson) => {
 
       delete data.createdAt;
 
-      const sortedObj = Object.keys(data)
-        .sort()
-        .reduce((accumulator, key) => {
-          accumulator[key] = data[key];
+      const sortedData = sortedObj(data);
 
-          return accumulator;
-        }, {});
-
-      setLegJson((prev) => prev + JSON.stringify(sortedObj, null, 2) + "\n");
+      setLegJson((prev) => prev + JSON.stringify(sortedData, null, 2) + "\n");
     });
+    toast("Data Fetched Successfully", "success");
   } catch (err) {
     console.log(err);
   }

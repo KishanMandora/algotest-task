@@ -2,6 +2,7 @@ import { useState } from "react";
 import { LegsListProvider } from "../../Context/LegsListContext";
 import { LegList, LegItem } from "..";
 import { addData, fetchData } from "../../helpers/firebase.config";
+import { toast } from "../Toast/Toast";
 
 function LegContainer() {
   const [allLegs, setAllLegs] = useState([]);
@@ -18,13 +19,20 @@ function LegContainer() {
     );
 
   const handleFirestoreUpdate = () => {
+    if (!allLegs.length) {
+      toast("Please add data to upload", "error");
+      return;
+    }
     allLegs.forEach((leg) => {
       const filterLeg = { ...leg };
       delete filterLeg.id;
       delete filterLeg.paramValues;
       addData(filterLeg);
     });
+    toast("Data Uploaded Successfully", "success");
   };
+
+  const handleFetchData = () => fetchData(setLegJson);
 
   console.log("API key", import.meta.env.VITE_API_KEY);
 
@@ -58,7 +66,7 @@ function LegContainer() {
           <div className="flex gap-2">
             <button
               className="rounded-full bg-white-color py-1  px-8 font-normal text-primary-color"
-              onClick={() => fetchData(setLegJson)}
+              onClick={handleFetchData}
             >
               Fetch List
             </button>

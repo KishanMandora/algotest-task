@@ -25,15 +25,18 @@ import {
   LEG_STOP_LOSS,
   LEG_TRAIL_SL,
 } from "../../constant";
+import { toast } from "../Toast/Toast";
 
 function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
   const handleDeleteLeg = (id) => {
     setAllLegs((prev) => prev.filter((item) => item.id !== id));
+    toast("Leg Deleted Successfully", "error");
   };
 
   const handleCopyLeg = (leg) => {
     const newLeg = { ...leg, id: uuidv4() };
     setAllLegs((prev) => [...prev, newLeg]);
+    toast("Leg Copied Successfully", "info");
   };
 
   const handleStrikeParam = (id) => handleLegUpdate(id, STRIKE_PARAMETER);
@@ -83,7 +86,7 @@ function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
                 <CopySvg />
               </button>
             </div>
-            <div className="flex justify-center gap-2">
+            <div className="flex flex-wrap justify-center gap-2">
               <div className="flex items-center gap-2">
                 <span> Lots </span>
                 <TotalLots
@@ -135,7 +138,7 @@ function LegItem({ allLegs, setAllLegs, handleLegUpdate }) {
                 hideLabel
               />
             </div>
-            <div className="mt-6 flex justify-center gap-6">
+            <div className="mt-6 flex flex-wrap justify-center gap-6">
               <Momentum
                 momentum={LegMomentum}
                 id={id}

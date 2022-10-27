@@ -1,4 +1,4 @@
-import { PLUS, STRADDLE_WIDTH } from "../../../constant";
+import { PLUS } from "../../../constant";
 
 import { adjustmentOptions } from "../../../data";
 

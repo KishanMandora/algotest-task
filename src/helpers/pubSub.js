@@ -6,7 +6,6 @@ function pubSub() {
   };
 
   const publish = (eventName, data) => {
-    console.log(observer);
     const func = observer.get(eventName);
     func(data);
   };

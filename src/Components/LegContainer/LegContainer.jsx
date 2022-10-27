@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { LegsListProvider } from "../../Context/LegsListContext";
-import { LegList, LegItem } from "..";
+import { LegList, LegItem, LegJson } from "..";
 import { addData, fetchData } from "../../helpers/firebase.config";
 import { toast } from "../Toast/Toast";
 
@@ -34,11 +34,6 @@ function LegContainer() {
 
   const handleFetchData = () => fetchData(setLegJson);
 
-  console.log("API key", import.meta.env.VITE_API_KEY);
-
-  console.log("all legs", allLegs);
-  console.log("legs json", legJson);
-
   return (
     <div className="col-span-4 mt-16 py-4 px-10 font-bold text-black-color">
       <div className="mb-3 flex items-center justify-between border-b px-3">
@@ -58,34 +53,11 @@ function LegContainer() {
         handleLegUpdate={handleLegUpdate}
       />
 
-      <div>
-        <div className="mb-3 flex items-center justify-between border-b px-3 py-2 text-sm">
-          <div>
-            <span> Legs JSON</span>
-          </div>
-          <div className="flex gap-2">
-            <button
-              className="rounded-full bg-white-color py-1  px-8 font-normal text-primary-color"
-              onClick={handleFetchData}
-            >
-              Fetch List
-            </button>
-            <button
-              className="rounded-full bg-primary-color py-1 px-8 font-normal text-white-color"
-              onClick={handleFirestoreUpdate}
-            >
-              Submit
-            </button>
-          </div>
-        </div>
-        <section>
-          {legJson ? (
-            <div className="rounded-md bg-white-color p-4 font-normal">
-              <pre> {legJson} </pre>
-            </div>
-          ) : null}
-        </section>
-      </div>
+      <LegJson
+        legJson={legJson}
+        handleFirestoreUpdate={handleFirestoreUpdate}
+        handleFetchData={handleFetchData}
+      />
     </div>
   );
 }
